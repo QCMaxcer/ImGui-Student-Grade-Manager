@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="源文件\UI">
+      <UniqueIdentifier>{e7a83087-ba73-4e45-a026-eb1cf713d2c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Manager">
+      <UniqueIdentifier>{2c90144c-9807-4902-ac0e-37b2fe5fac47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\utf8_to_string">
+      <UniqueIdentifier>{c258fd65-4c9b-4edf-b556-8ad3f17b5368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Manager\Students">
+      <UniqueIdentifier>{623ac7f8-ff59-490c-8d74-1adcefa44a56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\UI\Client">
+      <UniqueIdentifier>{3774d8e9-809a-48ef-adc3-7525b8bc43f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\History">
+      <UniqueIdentifier>{232118c2-44f0-4c85-adff-d8056384daf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Sounds">
+      <UniqueIdentifier>{f7e285cf-5850-4383-9cd2-6d3e5456bf9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\UI\table">
+      <UniqueIdentifier>{02ded67d-a1c8-4588-b686-c413548d2a74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\autoSave">
+      <UniqueIdentifier>{8b824d83-a556-4af6-85f5-522c629897c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Settings">
+      <UniqueIdentifier>{68a514ec-ad66-4efb-9a1b-a1f6458c8375}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_dx11.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_tables.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui.cpp">
+      <Filter>源文件\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="manager.cpp">
+      <Filter>源文件\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="student.cpp">
+      <Filter>源文件\Manager\Students</Filter>
+    </ClCompile>
+    <ClCompile Include="utf8_to_string.cpp">
+      <Filter>源文件\utf8_to_string</Filter>
+    </ClCompile>
+    <ClCompile Include="client.cpp">
+      <Filter>源文件\UI\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="history.cpp">
+      <Filter>源文件\History</Filter>
+    </ClCompile>
+    <ClCompile Include="sounds.cpp">
+      <Filter>源文件\Sounds</Filter>
+    </ClCompile>
+    <ClCompile Include="table.cpp">
+      <Filter>源文件\UI\table</Filter>
+    </ClCompile>
+    <ClCompile Include="setting.cpp">
+      <Filter>源文件\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="autoSave.cpp">
+      <Filter>源文件\autoSave</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_demo.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImGui\imconfig.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx11.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_win32.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_header.h">
+      <Filter>源文件\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ui.h">
+      <Filter>源文件\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_main.hh">
+      <Filter>源文件\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="student.h">
+      <Filter>源文件\Manager\Students</Filter>
+    </ClInclude>
+    <ClInclude Include="manager.h">
+      <Filter>源文件\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="utf8_to_string.h">
+      <Filter>源文件\utf8_to_string</Filter>
+    </ClInclude>
+    <ClInclude Include="client.h">
+      <Filter>源文件\UI\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="setting.h">
+      <Filter>源文件\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="history.h">
+      <Filter>源文件\History</Filter>
+    </ClInclude>
+    <ClInclude Include="sounds.h">
+      <Filter>源文件\Sounds</Filter>
+    </ClInclude>
+    <ClInclude Include="table.h">
+      <Filter>源文件\UI\table</Filter>
+    </ClInclude>
+    <ClInclude Include="autoSave.h">
+      <Filter>源文件\autoSave</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
