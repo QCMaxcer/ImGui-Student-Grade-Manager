@@ -23,7 +23,7 @@ void Manager::calculateAverageScore()
     if (students.empty())
     {
         totalAverageScore = 0;
-        //½«ËùÓĞ¿ÆÄ¿µÄÆ½¾ù·ÖÖÃÎª0
+        //å°†æ‰€æœ‰ç§‘ç›®çš„å¹³å‡åˆ†ç½®ä¸º0
         //averageScores.resize(courses.size());
         for (int i = 0; i < courses.size(); i++)
         {
@@ -31,7 +31,7 @@ void Manager::calculateAverageScore()
         }
         return;
     }
-    //¼ÆËãÃ¿¸öÑ§ÉúµÄÆ½¾ù·Ö
+    //è®¡ç®—æ¯ä¸ªå­¦ç”Ÿçš„å¹³å‡åˆ†
     for (int i = 0; i < courses.size(); i++)
     {
         double sum = 0;
@@ -44,21 +44,24 @@ void Manager::calculateAverageScore()
         double average = sum / students.size();
         averageScores[i] = average;
     }
-    //¼ÆËã×Ü·ÖµÄÆ½¾ù·Ö
-    double sum = 0;
-    for (int i = 0; i < students.size(); i++)
-    {
-        sum += students[i].totalScore;
+    //è®¡ç®—æ€»åˆ†çš„å¹³å‡åˆ†
+    //double sum = 0;
+    //for (int i = 0; i < students.size(); i++)
+    //{
+    //    sum += students[i].totalScore;
+    //}
+    //double average = sum / students.size();
+    for (int i = 0; i < averageScores.size(); i++) {
+        average += averageScores[i];
     }
-    double average = sum / students.size();
     totalAverageScore = average;
 }
 
-//½âÊÍcalculateAverageScore£º
-//1. Ê×ÏÈÅĞ¶ÏÑ§ÉúÁĞ±íÊÇ·ñÎª¿Õ£¬Èç¹ûÎª¿Õ£¬Ôò½«ËùÓĞ¿ÆÄ¿µÄÆ½¾ù·ÖÖÃÎª0
-//2. ±éÀúËùÓĞÑ§Éú£¬¼ÆËãÃ¿¸öÑ§ÉúµÄ×Ü·Ö£¬²¢½«×Ü·Ö³ıÒÔÑ§ÉúÊıÁ¿£¬µÃµ½Ã¿¸öÑ§ÉúµÄÆ½¾ù·Ö
-//3. ±éÀúËùÓĞ¿Î³Ì£¬¼ÆËãÃ¿¸ö¿Î³ÌµÄÆ½¾ù·Ö£¬²¢½«Æ½¾ù·Ö±£´æµ½averageScoresÁĞ±íÖĞ
-//4. ¼ÆËã×Ü·ÖµÄÆ½¾ù·Ö£¬²¢½«Æä±£´æµ½totalAverageScoreÖĞ
+//è§£é‡ŠcalculateAverageScoreï¼š
+//1. é¦–å…ˆåˆ¤æ–­å­¦ç”Ÿåˆ—è¡¨æ˜¯å¦ä¸ºç©ºï¼Œå¦‚æœä¸ºç©ºï¼Œåˆ™å°†æ‰€æœ‰ç§‘ç›®çš„å¹³å‡åˆ†ç½®ä¸º0
+//2. éå†æ‰€æœ‰å­¦ç”Ÿï¼Œè®¡ç®—æ¯ä¸ªå­¦ç”Ÿçš„æ€»åˆ†ï¼Œå¹¶å°†æ€»åˆ†é™¤ä»¥å­¦ç”Ÿæ•°é‡ï¼Œå¾—åˆ°æ¯ä¸ªå­¦ç”Ÿçš„å¹³å‡åˆ†
+//3. éå†æ‰€æœ‰è¯¾ç¨‹ï¼Œè®¡ç®—æ¯ä¸ªè¯¾ç¨‹çš„å¹³å‡åˆ†ï¼Œå¹¶å°†å¹³å‡åˆ†ä¿å­˜åˆ°averageScoresåˆ—è¡¨ä¸­
+//4. è®¡ç®—æ€»åˆ†çš„å¹³å‡åˆ†ï¼Œå¹¶å°†å…¶ä¿å­˜åˆ°totalAverageScoreä¸­
 
 void Manager::newFile()
 {
@@ -163,11 +166,11 @@ int Manager::loadFromFile(bool firstLoad)
             newFile();
         }
         //cout << "file format error" << endl;
-        return 2; //ÎÄ¼ş¸ñÊ½´íÎó
+        return 2; //æ–‡ä»¶æ ¼å¼é”™è¯¯
     }
-    clearStudents(); //ÏÈÇå¿ÕÔ­ÏÈµÄÑ§ÉúĞÅÏ¢
-    clearCourses(); //ÏÈÇå¿ÕÔ­ÏÈµÄ¿Î³ÌĞÅÏ¢
-    while (getline(file, line)) //¶ÁÈ¡¿Î³ÌĞÅÏ¢
+    clearStudents(); //å…ˆæ¸…ç©ºåŸå…ˆçš„å­¦ç”Ÿä¿¡æ¯
+    clearCourses(); //å…ˆæ¸…ç©ºåŸå…ˆçš„è¯¾ç¨‹ä¿¡æ¯
+    while (getline(file, line)) //è¯»å–è¯¾ç¨‹ä¿¡æ¯
     {
         if (line == "students:")
         {
@@ -175,7 +178,7 @@ int Manager::loadFromFile(bool firstLoad)
         }
         addCourse(line, false);
     }
-    while (getline(file, line)) //¶ÁÈ¡Ñ§ÉúĞÅÏ¢
+    while (getline(file, line)) //è¯»å–å­¦ç”Ÿä¿¡æ¯
     {
         stringstream ss(line);
         long long id;
@@ -204,55 +207,65 @@ int Manager::addCourse(string course, bool undoable)
 {
     if (course.empty())
     {
-        return 1; //¿Î³ÌÃûÎª¿Õ
+        return 1; //è¯¾ç¨‹åä¸ºç©º
     }
-    //¼ì²â¿Î³ÌÊÇ·ñÒÑ¾­´æÔÚ
-    for (int i = 0; i < courses.size(); i++)
-    {
-        if (courses[i] == course)
-        {
-            return 2; //¿Î³ÌÒÑ¾­´æÔÚ
-        }
+    //æ£€æµ‹è¯¾ç¨‹æ˜¯å¦å·²ç»å­˜åœ¨
+    //for (int i = 0; i < courses.size(); i++)
+    //{
+    //    if (courses[i] == course)
+    //    {
+    //        return 2; //è¯¾ç¨‹å·²ç»å­˜åœ¨
+    //    }
+    //}
+    if (courses.contains(course)) {
+        return 2; // è¯¾ç¨‹å·²ç»å­˜åœ¨
     }
     for (int i = 0; i < students.size(); i++)
     {
         students[i].scores.push_back(-1.0f);
     }
     courses.push_back(course);
-    averageScores.push_back(0.0f); //Ìí¼ÓÆ½¾ù·Ö
+    averageScores.push_back(0.0f); //æ·»åŠ å¹³å‡åˆ†
     Course_filter filter;
-    table.filter.course_filters.push_back(filter); //Ìí¼Ó¹ıÂËÆ÷
+    table.filter.course_filters.push_back(filter); //æ·»åŠ è¿‡æ»¤å™¨
     if(undoable)
         history.addAction(AddCourse, course, course);
-    calculateAverageScore();
+    //calculateAverageScore(); æ— ç”¨
     return 0;
 }
 
-//½âÊÍaddCourse£º
-//1. Ê×ÏÈÅĞ¶Ï¿Î³ÌÃûÊÇ·ñÎª¿Õ
-//2. È»ºó±éÀúËùÓĞÑ§Éú£¬ÎªÃ¿¸öÑ§ÉúÌí¼ÓÒ»¸ö-1µÄ·ÖÊı£¬ÒÔ±ãºóÃæÌí¼Ó¿Î³ÌÊ±£¬Ã¿¸öÑ§Éú¶¼ÓĞ¶ÔÓ¦µÄ·ÖÊı
-//3. Ïò¿Î³ÌÁĞ±íÖĞÌí¼Ó¿Î³Ì
-//4. ÏòÆ½¾ù·ÖÁĞ±íÖĞÌí¼Ó0.0f
-//5. Ïò¹ıÂËÆ÷ÁĞ±íÖĞÌí¼ÓÒ»¸ö¿ÕµÄ¹ıÂËÆ÷
-//6. µ÷ÓÃcalculateAverageScore()º¯Êı£¬¼ÆËãÆ½¾ù·Ö
-//7. µ÷ÓÃhistory.addAction()º¯Êı£¬¼ÇÂ¼²Ù×÷
+//è§£é‡ŠaddCourseï¼š
+//1. é¦–å…ˆåˆ¤æ–­è¯¾ç¨‹åæ˜¯å¦ä¸ºç©º
+//2. ç„¶åéå†æ‰€æœ‰å­¦ç”Ÿï¼Œä¸ºæ¯ä¸ªå­¦ç”Ÿæ·»åŠ ä¸€ä¸ª-1çš„åˆ†æ•°ï¼Œä»¥ä¾¿åé¢æ·»åŠ è¯¾ç¨‹æ—¶ï¼Œæ¯ä¸ªå­¦ç”Ÿéƒ½æœ‰å¯¹åº”çš„åˆ†æ•°
+//3. å‘è¯¾ç¨‹åˆ—è¡¨ä¸­æ·»åŠ è¯¾ç¨‹
+//4. å‘å¹³å‡åˆ†åˆ—è¡¨ä¸­æ·»åŠ 0.0f
+//5. å‘è¿‡æ»¤å™¨åˆ—è¡¨ä¸­æ·»åŠ ä¸€ä¸ªç©ºçš„è¿‡æ»¤å™¨
+//6. è°ƒç”¨calculateAverageScore()å‡½æ•°ï¼Œè®¡ç®—å¹³å‡åˆ† - æ— ç”¨
+//7. è°ƒç”¨history.addAction()å‡½æ•°ï¼Œè®°å½•æ“ä½œ
 
 void Manager::addCourse(string course, vector<float> courseScores, bool undoable)
 {
     courses.push_back(course);
 
+    float averageScore = 0.0f;
     for (int i = 0; i < students.size(); i++)
     {
-        students[i].scores.push_back(courseScores[i]);
+        float score = courseScores[i];
+        students[i].scores.push_back(score);
+        if (score != -1.0f) {
+            averageScore += score;
+        }
     }
-    averageScores.push_back(0.0f); //Ìí¼ÓÆ½¾ù·Ö
+    averageScore /= (students.size() + 0.0f);
+    averageScores.push_back(averageScore); //æ·»åŠ å¹³å‡åˆ†
     Course_filter filter;
-    table.filter.course_filters.push_back(filter); //Ìí¼Ó¹ıÂËÆ÷
+    table.filter.course_filters.push_back(filter); //æ·»åŠ è¿‡æ»¤å™¨
     if (undoable)
         history.addAction(AddCourse, course, course);
-    calculateAverageScore();
+    //calculateAverageScore(); é¿å…é‡å¤è®¡ç®—
+    totalAverageScore += averageScore;
 }
-//ÓÃÓÚ»¹Ô­²Ù×÷µÄaddCouseº¯ÊıÖØÔØ
+//ç”¨äºè¿˜åŸæ“ä½œçš„addCouseå‡½æ•°é‡è½½
 
 void Manager::deleteCourse(string course, bool undoable)
 {
@@ -265,40 +278,52 @@ void Manager::deleteCourse(string course, bool undoable)
             index = i;
             break;
         }
-    } //ÕÒµ½ÒªÉ¾³ıµÄ¿Î³ÌµÄË÷Òı
+    } //æ‰¾åˆ°è¦åˆ é™¤çš„è¯¾ç¨‹çš„ç´¢å¼•
+    if (index == -1) {
+        return 5; // TODO: è¯¾ç¨‹ä¸å­˜åœ¨
+    }
     for (int i = 0; i < students.size(); i++)
     {
-        courseScores.push_back(students[i].scores[index]); //±£´æÔ­ÏÈÑ§ÉúµÄ·ÖÊı
-        students[i].scores.erase(students[i].scores.begin() + index); //É¾³ıÔ­ÏÈÑ§ÉúµÄ·ÖÊı
+        courseScores.push_back(students[i].scores[index]); //ä¿å­˜åŸå…ˆå­¦ç”Ÿçš„åˆ†æ•°
+        students[i].scores.erase(students[i].scores.begin() + index); //åˆ é™¤åŸå…ˆå­¦ç”Ÿçš„åˆ†æ•°
     }
-    averageScores.erase(averageScores.begin() + index); //É¾³ıÆ½¾ù·Ö
-    table.filter.course_filters.erase(table.filter.course_filters.begin() + index + 1); //É¾³ı¹ıÂËÆ÷
-    courses.erase(courses.begin() + index); //É¾³ı¿Î³Ì
+    float previousAverageScore = averageScores[index];
+    averageScores.erase(averageScores.begin() + index); //åˆ é™¤å¹³å‡åˆ†
+    table.filter.course_filters.erase(table.filter.course_filters.begin() + index + 1); //åˆ é™¤è¿‡æ»¤å™¨
+    courses.erase(courses.begin() + index); //åˆ é™¤è¯¾ç¨‹
     if(undoable)
         history.addAction(DeleteCourse, courseScores, course);
-    calculateAverageScore();
+    //calculateAverageScore(); é¿å…é‡å¤è®¡ç®—
+    totalAverageScore -= previousAverageScore;
 }
 
-//½âÊÍdeleteCourse£º
-//1. Ê×ÏÈ±éÀúËùÓĞÑ§Éú£¬±£´æÔ­ÏÈÑ§ÉúµÄ·ÖÊı
-//2. È»ºóÉ¾³ı¿Î³Ì
-//3. µ÷ÓÃcalculateAverageScore()º¯Êı£¬¼ÆËãÆ½¾ù·Ö
-//4. µ÷ÓÃhistory.addAction()º¯Êı£¬¼ÇÂ¼²Ù×÷
+//è§£é‡ŠdeleteCourseï¼š
+//1. é¦–å…ˆéå†æ‰€æœ‰å­¦ç”Ÿï¼Œä¿å­˜åŸå…ˆå­¦ç”Ÿçš„åˆ†æ•°
+//2. ç„¶ååˆ é™¤è¯¾ç¨‹
+//3. è°ƒç”¨calculateAverageScore()å‡½æ•°ï¼Œè®¡ç®—å¹³å‡åˆ† - ç›´æ¥å‡å»è¯¥è¯¾ç¨‹åˆ†æ•°ï¼Œé¿å…é‡å¤è®¡ç®—
+//4. è°ƒç”¨history.addAction()å‡½æ•°ï¼Œè®°å½•æ“ä½œ
 
 int Manager::modifyCourse(string course, string newCourse, bool undoable)
 {
     if (newCourse.empty())
     {
-        return 1; //¿Î³ÌÃûÎª¿Õ
+        return 1; //è¯¾ç¨‹åä¸ºç©º
     }
-    //¼ì²â¿Î³ÌÊÇ·ñÒÑ¾­´æÔÚ
-    for (int i = 0; i < courses.size(); i++)
-    {
-        if (courses[i] == newCourse)
-        {
-            return 2; //¿Î³ÌÒÑ¾­´æÔÚ
-        }
+    if (course.empty()) {
+        return 3; //TODO: æŸ¥æ‰¾ä¸€ä¸ªåå­—ä¸ºç©ºçš„è¯¾ç¨‹ï¼Œæ˜¾ç„¶ä¸å­˜åœ¨
     }
+    if (newCourse == course) {
+        return 4; //TODO: æ— éœ€åšæ— ç”¨åŠŸ
+    }
+    //æ£€æµ‹è¯¾ç¨‹æ˜¯å¦å·²ç»å­˜åœ¨
+    //for (int i = 0; i < courses.size(); i++)
+    //{
+    //    if (courses[i] == newCourse)
+    //    {
+    //        return 2; //è¯¾ç¨‹å·²ç»å­˜åœ¨
+    //    }
+    //}
+    if (courses.contains(newCourse)) return 2; // è¯¾ç¨‹å·²ç»å­˜åœ¨
     int index = -1;
     for (int i = 0; i < courses.size(); i++)
     {
@@ -308,19 +333,22 @@ int Manager::modifyCourse(string course, string newCourse, bool undoable)
             break;
         }
     }
+    if (index == -1) {
+        return 5; // TODO: è¯¾ç¨‹ä¸å­˜åœ¨
+    }
     courses[index] = newCourse;
     if(undoable)
         history.addAction(ModifyCourse, course, newCourse);
-    calculateAverageScore();
+    //calculateAverageScore();
     return 0;
 }
 
-//½âÊÍmodifyCourse£º
-//1. Ê×ÏÈÅĞ¶ÏĞÂ¿Î³ÌÃûÊÇ·ñÎª¿Õ
-//2. È»ºó±éÀúËùÓĞ¿Î³Ì£¬ÕÒµ½ÒªĞŞ¸ÄµÄ¿Î³ÌµÄË÷Òı
-//3. ĞŞ¸Ä¿Î³ÌÃû
-//4. µ÷ÓÃcalculateAverageScore()º¯Êı£¬¼ÆËãÆ½¾ù·Ö
-//5. µ÷ÓÃhistory.addAction()º¯Êı£¬¼ÇÂ¼²Ù×÷
+//è§£é‡ŠmodifyCourseï¼š
+//1. é¦–å…ˆåˆ¤æ–­æ–°è¯¾ç¨‹åæ˜¯å¦ä¸ºç©º
+//2. ç„¶åéå†æ‰€æœ‰è¯¾ç¨‹ï¼Œæ‰¾åˆ°è¦ä¿®æ”¹çš„è¯¾ç¨‹çš„ç´¢å¼•
+//3. ä¿®æ”¹è¯¾ç¨‹å
+//4. è°ƒç”¨calculateAverageScore()å‡½æ•°ï¼Œè®¡ç®—å¹³å‡åˆ† - æ— ç”¨ï¼Œæ”¹å˜åå­—å¹¶ä¸æ”¹å˜æˆç»©
+//5. è°ƒç”¨history.addAction()å‡½æ•°ï¼Œè®°å½•æ“ä½œ
 
 void Manager::clearCourses()
 {
@@ -331,41 +359,45 @@ void Manager::clearCourses()
         students[i].scores.clear();
         students[i].totalScore = 0;
     }
-    calculateAverageScore();
+    //calculateAverageScore();
+    totalAverageScore = 0;
+    averageScores.clear();
     history.clear();
 }
 
-//½âÊÍclearCourses£º
-//1. Ê×ÏÈÇå¿Õ¿Î³ÌÁĞ±í
-//2. È»ºóÇå¿Õ¹ıÂËÆ÷ÁĞ±í
-//3. È»ºóÇå¿ÕÑ§ÉúµÄ·ÖÊıÁĞ±í
-//4. È»ºóÇå¿ÕÆ½¾ù·ÖÁĞ±í
-//5. µ÷ÓÃcalculateAverageScore()º¯Êı£¬¼ÆËãÆ½¾ù·Ö
-//6. µ÷ÓÃhistory.clear()º¯Êı£¬Çå¿Õ²Ù×÷¼ÇÂ¼
+//è§£é‡ŠclearCoursesï¼š
+//1. é¦–å…ˆæ¸…ç©ºè¯¾ç¨‹åˆ—è¡¨
+//2. ç„¶åæ¸…ç©ºè¿‡æ»¤å™¨åˆ—è¡¨
+//3. ç„¶åæ¸…ç©ºå­¦ç”Ÿçš„åˆ†æ•°åˆ—è¡¨
+//4. ç„¶åæ¸…ç©ºå¹³å‡åˆ†åˆ—è¡¨
+//5. è°ƒç”¨calculateAverageScore()å‡½æ•°ï¼Œè®¡ç®—å¹³å‡åˆ† - æ— ç”¨
+//6. è°ƒç”¨history.clear()å‡½æ•°ï¼Œæ¸…ç©ºæ“ä½œè®°å½•
 
 int Manager::addStudent(Student student, bool undoable)
 {
-    //¼ì²âÑ§ºÅÊÇ·ñÒÑ¾­´æÔÚ
+    // é¿å…å¾ªç¯èµ·æ‰‹
+    if (student.id < 0)
+    {
+        return 4; //å­¦å·ä¸åˆæ³•
+    }
+    if (student.name.empty())
+    {
+        return 3; //å§“åä¸ºç©º
+    }
+    //æ£€æµ‹å­¦å·æ˜¯å¦å·²ç»å­˜åœ¨
     for (int i = 0; i < students.size(); i++) 
     {
         if (students[i].id == student.id) 
         {
-            return 1; //Ñ§ºÅÖØ¸´
-        }
-        if (student.id < 0)
-        {
-            return 4; //Ñ§ºÅ²»ºÏ·¨
-        }
-        if (student.name.empty())
-        {
-            return 3; //ĞÕÃûÎª¿Õ
+            return 1; //å­¦å·é‡å¤
         }
     }
     for (int i = 0; i < courses.size(); i++) 
     {
-        if (student.scores[i] < -1.0f || (student.scores[i] > -1.0f && student.scores[i] < 0.0f))
+        float score = student.scores[i];
+        if (score < 0.0f && score != -1.0f) // å¯ç»´æŠ¤ç¨‹åº¦æ›´é«˜
         {
-            return 2; //·ÖÊı²»ºÏ·¨
+            return 2; //åˆ†æ•°ä¸åˆæ³•
         }
     }
     students.push_back(student);
@@ -375,13 +407,13 @@ int Manager::addStudent(Student student, bool undoable)
     return 0;
 }
 
-//½âÊÍaddStudent£º
-//1. Ê×ÏÈ¼ì²âÑ§ºÅÊÇ·ñÖØ¸´
-//2. È»ºó¼ì²âĞÕÃûÊÇ·ñÎª¿Õ
-//3. È»ºó¼ì²â·ÖÊıÊÇ·ñºÏ·¨
-//4. È»ºóÏòÑ§ÉúÁĞ±íÖĞÌí¼ÓÑ§Éú
-//5. µ÷ÓÃcalculateAverageScore()º¯Êı£¬¼ÆËãÆ½¾ù·Ö
-//6. µ÷ÓÃhistory.addAction()º¯Êı£¬¼ÇÂ¼²Ù×÷
+//è§£é‡ŠaddStudentï¼š
+//1. é¦–å…ˆæ£€æµ‹å­¦å·æ˜¯å¦é‡å¤
+//2. ç„¶åæ£€æµ‹å§“åæ˜¯å¦ä¸ºç©º
+//3. ç„¶åæ£€æµ‹åˆ†æ•°æ˜¯å¦åˆæ³•
+//4. ç„¶åå‘å­¦ç”Ÿåˆ—è¡¨ä¸­æ·»åŠ å­¦ç”Ÿ
+//5. è°ƒç”¨calculateAverageScore()å‡½æ•°ï¼Œè®¡ç®—å¹³å‡åˆ†
+//6. è°ƒç”¨history.addAction()å‡½æ•°ï¼Œè®°å½•æ“ä½œ
 
 void Manager::deleteStudent(int id, bool undoable)
 {
@@ -398,24 +430,25 @@ void Manager::deleteStudent(int id, bool undoable)
     }
 }
 
-//½âÊÍdeleteStudent£º
-//1. Ê×ÏÈ±éÀúÑ§ÉúÁĞ±í£¬ÕÒµ½ÒªÉ¾³ıµÄÑ§ÉúµÄË÷Òı
-//2. È»ºóµ÷ÓÃhistory.addAction()º¯Êı£¬¼ÇÂ¼²Ù×÷
-//3. È»ºóÉ¾³ıÑ§Éú
-//4. µ÷ÓÃcalculateAverageScore()º¯Êı£¬¼ÆËãÆ½¾ù·Ö
+//è§£é‡ŠdeleteStudentï¼š
+//1. é¦–å…ˆéå†å­¦ç”Ÿåˆ—è¡¨ï¼Œæ‰¾åˆ°è¦åˆ é™¤çš„å­¦ç”Ÿçš„ç´¢å¼•
+//2. ç„¶åè°ƒç”¨history.addAction()å‡½æ•°ï¼Œè®°å½•æ“ä½œ
+//3. ç„¶ååˆ é™¤å­¦ç”Ÿ
+//4. è°ƒç”¨calculateAverageScore()å‡½æ•°ï¼Œè®¡ç®—å¹³å‡åˆ†
 
 int Manager::modifyStudent(Student student, bool undoable)
 {
-    //Ê×ÏÈ¼ì²âĞÕÃûÊÇ·ñÎª¿Õ
+    //é¦–å…ˆæ£€æµ‹å§“åæ˜¯å¦ä¸ºç©º
     if (student.name.empty())
     {
-        return 3; //ĞÕÃûÎª¿Õ
+        return 3; //å§“åä¸ºç©º
     }
     for (int i = 0; i < courses.size(); i++)
     {
-        if (student.scores[i] < -1.0f || (student.scores[i] > -1.0f && student.scores[i] < 0.0f))
+        float score = student.scores[i];
+        if (score != -1.0f && score < 0.0f)
         {
-            return 2; //·ÖÊı²»ºÏ·¨
+            return 2; //åˆ†æ•°ä¸åˆæ³•
         }
     }
 
@@ -432,54 +465,54 @@ int Manager::modifyStudent(Student student, bool undoable)
     }
 }
 
-//½âÊÍmodifyStudent£º
-//1. Ê×ÏÈ¼ì²âĞÕÃûÊÇ·ñÎª¿Õ
-//2. È»ºó¼ì²â·ÖÊıÊÇ·ñºÏ·¨
-//3. È»ºó±éÀúÑ§ÉúÁĞ±í£¬ÕÒµ½ÒªĞŞ¸ÄµÄÑ§ÉúµÄË÷Òı
-//4. È»ºóĞŞ¸ÄÑ§ÉúĞÅÏ¢
-//5. µ÷ÓÃcalculateAverageScore()º¯Êı£¬¼ÆËãÆ½¾ù·Ö
-//6. µ÷ÓÃhistory.addAction()º¯Êı£¬¼ÇÂ¼²Ù×÷
+//è§£é‡ŠmodifyStudentï¼š
+//1. é¦–å…ˆæ£€æµ‹å§“åæ˜¯å¦ä¸ºç©º
+//2. ç„¶åæ£€æµ‹åˆ†æ•°æ˜¯å¦åˆæ³•
+//3. ç„¶åéå†å­¦ç”Ÿåˆ—è¡¨ï¼Œæ‰¾åˆ°è¦ä¿®æ”¹çš„å­¦ç”Ÿçš„ç´¢å¼•
+//4. ç„¶åä¿®æ”¹å­¦ç”Ÿä¿¡æ¯
+//5. è°ƒç”¨calculateAverageScore()å‡½æ•°ï¼Œè®¡ç®—å¹³å‡åˆ†
+//6. è°ƒç”¨history.addAction()å‡½æ•°ï¼Œè®°å½•æ“ä½œ
 
 void Manager::clearStudents()
 {
     students.clear();
-    calculateAverageScore();
+    calculateAverageScore(); // æœ‰ç©ºå¤„ç†ï¼Œæ­£ç¡®çš„
     history.clear();
 }
 
-//½âÊÍclearStudents£º
-//1. Ê×ÏÈÇå¿ÕÑ§ÉúÁĞ±í
-//2. È»ºóµ÷ÓÃcalculateAverageScore()º¯Êı£¬¼ÆËãÆ½¾ù·Ö
-//3. µ÷ÓÃhistory.clear()º¯Êı£¬Çå¿Õ²Ù×÷¼ÇÂ¼
+//è§£é‡ŠclearStudentsï¼š
+//1. é¦–å…ˆæ¸…ç©ºå­¦ç”Ÿåˆ—è¡¨
+//2. ç„¶åè°ƒç”¨calculateAverageScore()å‡½æ•°ï¼Œè®¡ç®—å¹³å‡åˆ†
+//3. è°ƒç”¨history.clear()å‡½æ•°ï¼Œæ¸…ç©ºæ“ä½œè®°å½•
 
 void Manager::insertRandom(int stu_count)
 {
     newFile();
-    courses.push_back(u8"ÓïÎÄ");
+    courses.push_back(u8"è¯­æ–‡");
     averageScores.push_back(-1.0f);
-    courses.push_back(u8"ÊıÑ§");
+    courses.push_back(u8"æ•°å­¦");
     averageScores.push_back(-1.0f);
-    courses.push_back(u8"Ó¢Óï");
+    courses.push_back(u8"è‹±è¯­");
     averageScores.push_back(-1.0f);
-    courses.push_back(u8"ÎïÀí");
+    courses.push_back(u8"ç‰©ç†");
     averageScores.push_back(-1.0f);
-    courses.push_back(u8"»¯Ñ§");
+    courses.push_back(u8"åŒ–å­¦");
     averageScores.push_back(-1.0f);
-    courses.push_back(u8"ÉúÎï");
+    courses.push_back(u8"ç”Ÿç‰©");
     averageScores.push_back(-1.0f);
 
-    random_device rd;   // Ê¹ÓÃÓ²¼şËæ»úÊıÖÖ×Ó£¨Èç¹û¿ÉÓÃ£©
-    mt19937 gen(rd());  // Mersenne Twister 19937 ÒıÇæ
-    uniform_int_distribution<> distrib(-1, 100);  // Éú³É 1 µ½ 100 Ö®¼äµÄËæ»úÕûÊı
+    random_device rd;   // ä½¿ç”¨ç¡¬ä»¶éšæœºæ•°ç§å­ï¼ˆå¦‚æœå¯ç”¨ï¼‰
+    mt19937 gen(rd());  // Mersenne Twister 19937 å¼•æ“
+    uniform_int_distribution<> distrib(-1, 100);  // ç”Ÿæˆ 1 åˆ° 100 ä¹‹é—´çš„éšæœºæ•´æ•°
 
-    for (int i = 0; i < stu_count; i++) //Ìí¼Óstu_count¸öÑ§Éú
+    for (int i = 0; i < stu_count; i++) //æ·»åŠ stu_countä¸ªå­¦ç”Ÿ
     {
         vector<float> scores;
         for (int j = 0; j < manager.courses.size(); j++)
         {
             scores.push_back(distrib(gen));
         }
-        Student student(i + 1, u8"Ñ§Éú" + to_string(i + 1), scores);
+        Student student(i + 1, u8"å­¦ç”Ÿ" + to_string(i + 1), scores);
         students.push_back(student);
     }
 
