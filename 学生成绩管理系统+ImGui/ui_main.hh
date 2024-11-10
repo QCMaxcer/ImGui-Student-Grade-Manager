@@ -1179,6 +1179,9 @@ void renderModifyCourseWindow()
                 error_Info += u8"科目名不能为空！";
                 break;
             case 2:
+                error_Info += u8"修改后的科目名称与原科目名称相同！";
+                break;
+            case 3:
                 error_Info += u8"科目名称重复！";
                 break;
             }

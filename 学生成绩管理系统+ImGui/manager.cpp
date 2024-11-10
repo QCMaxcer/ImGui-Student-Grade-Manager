@@ -20,9 +20,10 @@ string Manager::getCourseName_str(int index)
 
 void Manager::calculateAverageScore()
 {
+    totalAverageScore = 0;
     if (students.empty())
     {
-        totalAverageScore = 0;
+        //totalAverageScore = 0;
         //将所有科目的平均分置为0
         //averageScores.resize(courses.size());
         for (int i = 0; i < courses.size(); i++)
@@ -43,15 +44,15 @@ void Manager::calculateAverageScore()
         }
         double average = sum / students.size();
         averageScores[i] = average;
+        totalAverageScore += average;
     }
-    //计算总分的平均分
-    double sum = 0;
-    for (int i = 0; i < students.size(); i++)
-    {
-        sum += students[i].totalScore;
-    }
-    double average = sum / students.size();
-    totalAverageScore = average;
+    ////计算总分的平均分
+    //double sum = 0;
+    //for (int i = 0; i < students.size(); i++)
+    //{
+    //    sum += averageScores[i];
+    //}
+    //totalAverageScore = sum;
 }
 
 //解释calculateAverageScore：
@@ -224,7 +225,7 @@ int Manager::addCourse(string course, bool undoable)
     table.filter.course_filters.push_back(filter); //添加过滤器
     if(undoable)
         history.addAction(AddCourse, course, course);
-    calculateAverageScore();
+    //calculateAverageScore();
     return 0;
 }
 
@@ -234,8 +235,7 @@ int Manager::addCourse(string course, bool undoable)
 //3. 向课程列表中添加课程
 //4. 向平均分列表中添加0.0f
 //5. 向过滤器列表中添加一个空的过滤器
-//6. 调用calculateAverageScore()函数，计算平均分
-//7. 调用history.addAction()函数，记录操作
+//6. 调用history.addAction()函数，记录操作
 
 void Manager::addCourse(string course, vector<float> courseScores, bool undoable)
 {
@@ -244,6 +244,7 @@ void Manager::addCourse(string course, vector<float> courseScores, bool undoable
     for (int i = 0; i < students.size(); i++)
     {
         students[i].scores.push_back(courseScores[i]);
+        students[i].calculateTotalScore();
     }
     averageScores.push_back(0.0f); //添加平均分
     Course_filter filter;
@@ -270,6 +271,7 @@ void Manager::deleteCourse(string course, bool undoable)
     {
         courseScores.push_back(students[i].scores[index]); //保存原先学生的分数
         students[i].scores.erase(students[i].scores.begin() + index); //删除原先学生的分数
+        students[i].calculateTotalScore();//计算总分
     }
     averageScores.erase(averageScores.begin() + index); //删除平均分
     table.filter.course_filters.erase(table.filter.course_filters.begin() + index + 1); //删除过滤器
@@ -291,12 +293,17 @@ int Manager::modifyCourse(string course, string newCourse, bool undoable)
     {
         return 1; //课程名为空
     }
+    //检测修改名称是否与原名称相同
+    if (course == newCourse)
+    {
+        return 2;
+    }
     //检测课程是否已经存在
     for (int i = 0; i < courses.size(); i++)
     {
         if (courses[i] == newCourse)
         {
-            return 2; //课程已经存在
+            return 3; //课程已经存在
         }
     }
     int index = -1;
@@ -311,7 +318,7 @@ int Manager::modifyCourse(string course, string newCourse, bool undoable)
     courses[index] = newCourse;
     if(undoable)
         history.addAction(ModifyCourse, course, newCourse);
-    calculateAverageScore();
+    //calculateAverageScore();
     return 0;
 }
 
@@ -319,8 +326,7 @@ int Manager::modifyCourse(string course, string newCourse, bool undoable)
 //1. 首先判断新课程名是否为空
 //2. 然后遍历所有课程，找到要修改的课程的索引
 //3. 修改课程名
-//4. 调用calculateAverageScore()函数，计算平均分
-//5. 调用history.addAction()函数，记录操作
+//4. 调用history.addAction()函数，记录操作
 
 void Manager::clearCourses()
 {
@@ -331,7 +337,8 @@ void Manager::clearCourses()
         students[i].scores.clear();
         students[i].totalScore = 0;
     }
-    calculateAverageScore();
+    totalAverageScore = 0.0f;
+    averageScores.clear();
     history.clear();
 }
 
@@ -345,6 +352,14 @@ void Manager::clearCourses()
 
 int Manager::addStudent(Student student, bool undoable)
 {
+    if (student.id < 0)
+    {
+        return 4; //学号不合法
+    }
+    if (student.name.empty())
+    {
+        return 3; //姓名为空
+    }
     //检测学号是否已经存在
     for (int i = 0; i < students.size(); i++) 
     {
@@ -352,18 +367,11 @@ int Manager::addStudent(Student student, bool undoable)
         {
             return 1; //学号重复
         }
-        if (student.id < 0)
-        {
-            return 4; //学号不合法
-        }
-        if (student.name.empty())
-        {
-            return 3; //姓名为空
-        }
     }
     for (int i = 0; i < courses.size(); i++) 
     {
-        if (student.scores[i] < -1.0f || (student.scores[i] > -1.0f && student.scores[i] < 0.0f))
+        float score = student.scores[i];
+        if (score < 0.0f && score != -1.0f)
         {
             return 2; //分数不合法
         }
